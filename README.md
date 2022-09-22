@@ -76,9 +76,7 @@ sudo docker-compose exec web python manage.py fill_db
 документации).
 
 ## Бейдж статуса workflow
-```
 [![Django-app workflow](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml)
-```
 
 #
 (с) Проект Воробьёва Андрея.
