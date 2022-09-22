@@ -77,7 +77,7 @@ sudo docker-compose exec web python manage.py fill_db
 
 ## Бейдж статуса workflow
 ```
-[![Build Status](https://github.com/vandruhav/yamdb_final/workflows/yamdb_workflow.yml/badge.svg)](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml)
+[![Django-app workflow](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml)
 ```
 
 #
