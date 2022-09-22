@@ -1,5 +1,7 @@
 ﻿# Проект YaMDb_final
 
+##[![YaMDb](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml)
+
 ## Описание проекта
 Проект YaMDb собирает отзывы пользователей на произведения. Произведения
 делятся на категории и жанры. Сами произведения в YaMDb не хранятся, здесь
@@ -74,9 +76,6 @@ sudo docker-compose exec web python manage.py fill_db
 - При желании пользователь отправляет PATCH-запрос на эндпойнт
 "/api/v1/users/me/" и заполняет поля в своём профайле (описание полей — в
 документации).
-
-## Бейдж статуса workflow
-[![Django-app workflow](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml)
 
 #
 (с) Проект Воробьёва Андрея.
