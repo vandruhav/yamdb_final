@@ -59,7 +59,7 @@ jobs:
           sudo docker pull vandruhav/api_yamdb:v1
           # остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 vandruhav/api_yamdb:v1
+          sudo docker run --rm -d -p 8000:8000 vandruhav/api_yamdb:v1
 
   send_message:
     runs-on: ubuntu-latest
