@@ -75,5 +75,10 @@ sudo docker-compose exec web python manage.py fill_db
 "/api/v1/users/me/" и заполняет поля в своём профайле (описание полей — в
 документации).
 
+## Бейдж статуса workflow
+```
+[![Build Status](https://github.com/vandruhav/yamdb_final/workflows/Django-app%20workflow/badge.svg)](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml)
+```
+
 #
 (с) Проект Воробьёва Андрея.
