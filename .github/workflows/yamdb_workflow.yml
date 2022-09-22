@@ -1,6 +1,7 @@
 name: YaMDb_final
 
 on: [push]
+  branches: [master]
 
 jobs:
   tests:
@@ -22,10 +23,6 @@ jobs:
     - name: Test with flake8 and pytests
       run: |
         python -m flake8
-        # перейти в папку, содержащую manage.py — 
-        # <корневая_папка_infra_actions>/<папка_проекта>/manage.py
-        # cd infra_project/
-        # запустить написанные разработчиком тесты
         pytest
 
   # Сразу после них добавьте новую задачу: деплой приложения
@@ -51,7 +48,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: vandruhav/infra_actions:latest
+          tags: vandruhav/api_yamdb:v1
 
   deploy:
     runs-on: ubuntu-latest
