@@ -1,61 +1,48 @@
-name: Django-app workflow
+name: YaMDb_final
 
-on: [push]
+on:
+  push:
+    branches: [master]
 
 jobs:
   tests:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
+          pip install -r api_yamdb/requirements.txt
+      - name: Test with flake8 and pytests
+        run: |
+          python -m flake8
+          pytest
 
-    - name: Install dependencies
-      run: | 
-        # обновление pip
-        python -m pip install --upgrade pip 
-        # установка flake8 и его плагинов
-        pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
-        # установка зависимостей
-        pip install -r requirements.txt 
-
-    - name: Test with flake8 and django tests
-      run: |
-        # запуск проверки проекта по flake8
-        python -m flake8
-        # перейти в папку, содержащую manage.py — 
-        # <корневая_папка_infra_actions>/<папка_проекта>/manage.py
-        cd infra_project/
-        # запустить написанные разработчиком тесты
-        python manage.py pytest
-
-  # Сразу после них добавьте новую задачу: деплой приложения
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
     steps:
       - name: Check out the repo
-        # Проверка доступности репозитория Docker Hub для workflow
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
-        # Вызов сборщика контейнеров docker
         uses: docker/setup-buildx-action@v1
       - name: Login to Docker
-        # Запуск скрипта авторизации на Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push to Docker Hub
-        # Пуш образа в Docker Hub
         uses: docker/build-push-action@v2
         with:
+          context: ./api_yamdb
           push: true
-          tags: vandruhav/infra_actions:latest
+          tags: vandruhav/api_yamdb:v1
 
   deploy:
     runs-on: ubuntu-latest
@@ -69,11 +56,16 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
-          # Выполняет pull образа с DockerHub
-          sudo docker pull vandruhav/infra_actions
-          #остановка всех контейнеров
-          sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 vandruhav/infra_actions
+            sudo docker-compose stop
+            sudo docker-compose rm web
+            touch .env
+            sudo echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
+            sudo echo DB_NAME=${{ secrets.DB_NAME }} >> .env
+            sudo echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+            sudo echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+            sudo echo DB_HOST=${{ secrets.DB_HOST }} >> .env
+            sudo echo DB_PORT=${{ secrets.DB_PORT }} >> .env
+            sudo docker-compose up -d
 
   send_message:
     runs-on: ubuntu-latest
@@ -84,4 +76,3 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.workflow }} успешно выполнен!
