@@ -1,6 +1,6 @@
 ﻿# Проект YaMDb_final
 
-##[![YaMDb](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml)
+[![YaMDb](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml)
 
 ## Описание проекта
 Проект YaMDb собирает отзывы пользователей на произведения. Произведения
