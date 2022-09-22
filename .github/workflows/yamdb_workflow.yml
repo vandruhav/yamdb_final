@@ -56,10 +56,10 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
-          sudo docker pull vandruhav/api_yamdb
+          sudo docker pull vandruhav/api_yamdb:v1
           # остановка всех контейнеров
-          sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 vandruhav/api_yamdb
+          #sudo docker stop $(sudo docker ps -a -q)
+          #sudo docker run --rm -d -p 5000:5000 vandruhav/api_yamdb
 
   send_message:
     runs-on: ubuntu-latest
