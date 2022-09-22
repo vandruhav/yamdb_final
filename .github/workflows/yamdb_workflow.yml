@@ -44,17 +44,17 @@ jobs:
           push: true
           tags: vandruhav/api_yamdb:v1
 
-#  deploy:
-#    runs-on: ubuntu-latest
-#    needs: build_and_push_to_docker_hub
-#    steps:
-#    - name: executing remote ssh commands to deploy
-#      uses: appleboy/ssh-action@master
-#      with:
-#        host: ${{ secrets.HOST }}
-#        username: ${{ secrets.USER }}
-#        key: ${{ secrets.SSH_KEY }}
-#        passphrase: ${{ secrets.PASSPHRASE }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push_to_docker_hub
+    steps:
+    - name: executing remote ssh commands to deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
 #        script: |
 #          # Выполняет pull образа с DockerHub
 #          sudo docker pull vandruhav/infra_actions
@@ -64,8 +64,7 @@ jobs:
 
   send_message:
     runs-on: ubuntu-latest
-#    needs: deploy
-    needs: build_and_push_to_docker_hub
+    needs: deploy
     steps:
     - name: send message
       uses: appleboy/telegram-action@master
