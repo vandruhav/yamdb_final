@@ -1,6 +1,6 @@
 name: YaMDb_final
 
-on: push
+on: [push]
   branches: [master]
 
 jobs:
