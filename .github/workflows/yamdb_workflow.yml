@@ -1,8 +1,10 @@
 name: YaMDb_final
 
-on: push:
-  branches:
-    - 'master'
+# on: push
+on:
+  push:
+    branches:
+      - 'master'
 
 jobs:
   tests:
