@@ -55,6 +55,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
+          sudo docker system prune -f
           sudo docker pull vandruhav/api_yamdb:v1
 #            sudo docker-compose stop
 #            sudo docker-compose rm web
