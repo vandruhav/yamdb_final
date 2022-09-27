@@ -55,17 +55,17 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
-          sudo docker pull vandruhav/api_yamdb:v1
-#            sudo docker-compose stop
-#            sudo docker-compose rm web
-#            touch .env
-#            sudo echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
-#            sudo echo DB_NAME=${{ secrets.DB_NAME }} >> .env
-#            sudo echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
-#            sudo echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
-#            sudo echo DB_HOST=${{ secrets.DB_HOST }} >> .env
-#            sudo echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-#            sudo docker-compose up -d
+#          sudo docker pull vandruhav/api_yamdb:v1
+          sudo docker-compose stop
+          sudo docker-compose rm web
+          touch .env
+          sudo echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
+          sudo echo DB_NAME=${{ secrets.DB_NAME }} >> .env
+          sudo echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+          sudo echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+          sudo echo DB_HOST=${{ secrets.DB_HOST }} >> .env
+          sudo echo DB_PORT=${{ secrets.DB_PORT }} >> .env
+          sudo docker-compose up -d
 
   send_message:
     runs-on: ubuntu-latest
