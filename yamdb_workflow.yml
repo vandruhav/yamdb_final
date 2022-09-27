@@ -1,11 +1,9 @@
 name: YaMDb_final
-
 # on: push
 on:
   push:
     branches:
       - 'master'
-
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -24,7 +22,6 @@ jobs:
         run: |
           python -m flake8
           pytest
-
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
@@ -45,7 +42,6 @@ jobs:
           context: ./api_yamdb
           push: true
           tags: vandruhav/api_yamdb:v1
-
   deploy:
     name: Deploy to Server
     runs-on: ubuntu-latest
@@ -70,7 +66,6 @@ jobs:
             sudo echo DB_HOST=${{ secrets.DB_HOST }} >> .env
             sudo echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             sudo docker-compose up -d
-
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
