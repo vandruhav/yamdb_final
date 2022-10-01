@@ -1,4 +1,5 @@
 name: YaMDb_final
+
 # on: push
 on:
   push:
@@ -57,7 +58,7 @@ jobs:
           script: |
             sudo docker pull vandruhav/api_yamdb:v1
             sudo docker-compose down
-            sudo echo SECRET_KEY="${{ secrets.SEC_KEY }}" > .env
+            sudo echo SECRET_KEY="${{ secrets.SECRET_KEY }}" > .env
             sudo echo DEBUG=${{ secrets.DEBUG }} >> .env
             sudo echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             sudo echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
