@@ -56,7 +56,8 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             sudo docker pull vandruhav/api_yamdb:v1
-            sudo docker-compose down
+            sudo docker-compose stop
+            sudo docker-compose rm web
             touch .env
             sudo echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             sudo echo DEBUG=${{ secrets.DEBUG }} >> .env
