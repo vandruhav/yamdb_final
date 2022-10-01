@@ -1,6 +1,6 @@
 ﻿# Проект YaMDb_final
 
-[![YaMDb](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)](http://vandruhav.sytes.net/redoc/)
+[![YaMDb](https://github.com/vandruhav/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)](http://vandruhav.sytes.net/admin/)
 
 ## Описание проекта
 Проект YaMDb собирает отзывы пользователей на произведения. Произведения
